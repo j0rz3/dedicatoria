@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #c89cf1, #ff69b4);
+      overflow: hidden;
+    }
+
+    .contenedor {
+      text-align: center;
+      position: relative;
+    }
+
+    .titulo-inicial {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 25px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .regalo {
+      width: 170px;
+      height: 150px;
+      position: relative;
+      cursor: pointer;
+      margin: auto;
+      transition: transform 0.4s ease;
+    }
+
+    .regalo:hover {
+      transform: scale(1.08);
+    }
+
+    .caja {
+      width: 170px;
+      height: 110px;
+      background: #ff1744;
+      position: absolute;
+      bottom: 0;
+      border-radius: 8px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .tapa {
+      width: 190px;
+      height: 45px;
+      background: #d50000;
+      position: absolute;
+      top: 0;
+      left: -10px;
+      border-radius: 8px;
+      transition: transform 0.7s ease;
+      transform-origin: bottom left;
+      z-index: 3;
+    }
+
+    .cinta-vertical {
+      width: 35px;
+      height: 110px;
+      background: #ffd700;
+      position: absolute;
+      left: 67px;
+      bottom: 0;
+      z-index: 2;
+    }
+
+    .cinta-horizontal {
+      width: 170px;
+      height: 28px;
+      background: #ffd700;
+      position: absolute;
+      bottom: 43px;
+      z-index: 2;
+    }
+
+    .mono {
+      width: 80px;
+      height: 45px;
+      position: absolute;
+      top: -35px;
+      left: 45px;
+      z-index: 4;
+    }
+
+    .mono::before,
+    .mono::after {
+      content: "";
+      width: 45px;
+      height: 45px;
+      background: #ffd700;
+      border-radius: 50% 50% 0 50%;
+      position: absolute;
+    }
+
+    .mono::before {
+      left: 0;
+      transform: rotate(-35deg);
+    }
+
+    .mono::after {
+      right: 0;
+      transform: rotate(125deg);
+    }
+
+    .mensaje-toca {
+      margin-top: 20px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      animation: parpadeo 1.2s infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.45; }
+    }
+
+    .carta {
+      width: 310px;
+      min-height: 430px;
+      background: white;
+      border-radius: 22px;
+      padding: 28px 22px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -35%) scale(0);
+      opacity: 0;
+      transition: all 0.8s ease;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+
+    .carta h1 {
+      color: #e91e63;
+      margin-bottom: 18px;
+      font-size: 30px;
+    }
+
+    .carta p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .imagen-dedicatoria {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-top: 10px;
+      border-radius: 18px;
+    }
+
+    .abierto .tapa {
+      transform: rotate(-35deg) translate(-35px, -40px);
+    }
+
+    .abierto .carta {
+      transform: translate(-50%, -55%) scale(1);
+      opacity: 1;
+    }
+
+    .abierto .mensaje-toca,
+    .abierto .regalo {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .corazon {
+      position: absolute;
+      color: #ff1744;
+      font-size: 24px;
+      animation: flotar 3s linear forwards;
+      z-index: 20;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-350px) scale(1.8);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor" id="contenedor">
+    <h2 class="titulo-inicial">Tengo algo para ti, Dennisse ❤️</h2><br><br><br>
+
+    <div class="regalo" onclick="abrirRegalo()">
+      <div class="mono"></div>
+      <div class="tapa"></div>
+      <div class="caja">
+        <div class="cinta-vertical"></div>
+        <div class="cinta-horizontal"></div>
+      </div>
+    </div>
+
+    <div class="mensaje-toca">Toca el regalo 🎁</div>
+
+    <div class="carta">
+      <h1>❤️</h1>
+
+      <audio id="musica" src="music/La_chica_de_Ipanema.mp3" loop></audio>
+
+      <p>
+        A veces basta ver a alguien para saber que tiene un brillo especial,<br>
+        y tú transmites una energía tan bonita que da muchas ganas de conocerte.<br>
+        Ojalá el tiempo nos dé la oportunidad de coincidir y conversar,<br>
+        mientras tanto, solo quería desearte muchos días lindos como tú.
+      </p>
+
+      <p>
+        Esta pequeña sorpresa<br>
+        es solo una forma de decirte<br>
+        lo especial que eres.
+      </p>
+
+      <!-- CAMBIA ESTA IMAGEN POR LA QUE TÚ QUIERAS -->
+      <img 
+        class="imagen-dedicatoria"
+        src="image/hello_kitty.jpeg"
+        alt="Imagen especial"
+      />
+    </div>
+  </div>
+
+  <script>
+    function abrirRegalo() {
+      const contenedor = document.getElementById("contenedor");
+      const musica = document.getElementById("musica");
+      contenedor.classList.add("abierto");
+      musica.play().catch(() => {
+        console.log("Safari bloqueó el audio hasta la interección del usuario.");
+      });
+
+      for (let i = 0; i < 35; i++) {
+        crearCorazon();
+      }
+    }
+
+    function crearCorazon() {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.innerHTML = "❤️";
+
+      corazon.style.left = Math.random() * window.innerWidth + "px";
+      corazon.style.top = window.innerHeight - 80 + "px";
+      corazon.style.fontSize = Math.random() * 20 + 18 + "px";
+
+      document.body.appendChild(corazon);
+
+      setTimeout(() => {
+        corazon.remove();
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
